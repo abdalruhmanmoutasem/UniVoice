@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<p class="eyebrow">ADMINISTRATION</p><h1>Requests overview</h1>
+<div class="stats"><div class="stat"><span>Total requests</span><strong>{{ total }}</strong></div><div class="stat"><span>Pending</span><strong>{{ pending }}</strong></div><div class="stat"><span>Resolved</span><strong>{{ resolved }}</strong></div></div>
+<div class="panel"><div class="page-heading"><h2>All requests</h2><a href="{{ url_for('admin.manage_staff') }}">Manage staff</a></div><table><thead><tr><th>Code</th><th>Student</th><th>Title</th><th>Status</th><th></th></tr></thead><tbody>{% for item in requests %}<tr><td>{{ item.ticket_code }}</td><td>{{ item.student.full_name }}</td><td>{{ item.title }}</td><td>{{ item.status }}</td><td><a href="{{ url_for('admin.manage_request', request_id=item.id) }}">Review</a></td></tr>{% else %}<tr><td colspan="5">No requests yet.</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}

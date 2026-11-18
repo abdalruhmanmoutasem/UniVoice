@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<div class="panel"><h1>Submit a request</h1><p>Provide enough detail so the responsible team can review it.</p>
+<form method="post" enctype="multipart/form-data">
+<label>Request type<select name="request_type" required><option value="Complaint">Complaint</option><option value="Suggestion">Suggestion</option></select></label>
+<label>Category<select name="category" required><option value="">Select category</option><option>Academic</option><option>Student Affairs</option><option>IT and Laboratories</option><option>Facilities</option><option>Other</option></select></label>
+<label>Title<input name="title" maxlength="160" required></label>
+<label>Description<textarea name="description" rows="6" required></textarea></label>
+<label>Attachments (images or PDF, max 5 MB each)<input type="file" name="attachments" accept=".png,.jpg,.jpeg,.webp,.pdf" multiple></label>
+<button>Submit request</button></form></div>
+{% endblock %}

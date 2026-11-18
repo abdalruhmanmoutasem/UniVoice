@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block content %}
+<div class="panel"><p class="eyebrow">{{ item.ticket_code }}</p><h1>{{ item.title }}</h1><p><b>Student:</b> {{ item.student.full_name }} ({{ item.student.email }})</p><p class="preserve">{{ item.description }}</p><h2>Manage request</h2>
+<form method="post"><label>Status<select name="status">{% for s in statuses %}<option value="{{ s }}" {% if item.status == s %}selected{% endif %}>{{ s }}</option>{% endfor %}</select></label>
+<label>Department<select name="department_id"><option value="">Unassigned</option>{% for d in departments %}<option value="{{ d.id }}" {% if item.department_id == d.id %}selected{% endif %}>{{ d.name }}</option>{% endfor %}</select></label>
+<label>Assign staff<select name="assigned_staff_id"><option value="">Unassigned</option>{% for person in staff %}<option value="{{ person.id }}" {% if item.assigned_staff_id == person.id %}selected{% endif %}>{{ person.full_name }} — {{ person.department.name if person.department else 'No department' }}</option>{% endfor %}</select></label><button>Save changes</button></form>
+<h2>Attachments</h2>{% for file in item.attachments %}<p><a href="{{ url_for('static', filename='uploads/' + file.stored_name) }}" target="_blank">{{ file.original_name }}</a></p>{% else %}<p>No attachments.</p>{% endfor %}
+</div>{% endblock %}

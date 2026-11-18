@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-heading"><div><p class="eyebrow">STUDENT PORTAL</p><h1>My requests</h1><p>Track your complaints and suggestions.</p></div><a class="button" href="{{ url_for('student.new_request') }}">New request</a></div>
+<div class="panel"><table><thead><tr><th>Tracking code</th><th>Title</th><th>Type</th><th>Status</th><th>Submitted</th></tr></thead><tbody>
+{% for item in requests %}<tr><td><a href="{{ url_for('student.request_detail', request_id=item.id) }}">{{ item.ticket_code }}</a></td><td>{{ item.title }}</td><td>{{ item.request_type }}</td><td><span class="status">{{ item.status }}</span></td><td>{{ item.created_at.strftime('%Y-%m-%d') }}</td></tr>{% else %}<tr><td colspan="5">You have not submitted any requests yet.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}
